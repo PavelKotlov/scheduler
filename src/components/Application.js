@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
-import { getAppointmentsForDay } from "../helpers/selectors"; 
+import { getAppointmentsForDay, getInterview } from "../helpers/selectors"; 
 import axios from 'axios';
 
 import "components/Application.scss";
@@ -11,18 +11,21 @@ export default function Application() {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    appointments: {}
+    appointments: {},
+    interviewers: {}
   });
 
   useEffect(() => {
     Promise.all([
       axios.get('/api/days'), 
-      axios.get('/api/appointments')
+      axios.get('/api/appointments'),
+      axios.get('/api/interviewers')
     ]).then((values) => {
       setState(prev => (
         { ...prev, 
           days: values[0].data, 
-          appointments: values[1].data
+          appointments: values[1].data,
+          interviewers: values[2].data
         }
       ));
     });
@@ -34,17 +37,20 @@ export default function Application() {
   // Declare Variables
   const dailyAppointments =  getAppointmentsForDay(state, state.day);
   
-  const appointments = dailyAppointments.map(appointment => {
+  const schedule = dailyAppointments.map(appointment => {
+    const interview = getInterview(state, appointment.interview);
+
     return (
       <Appointment 
         key={appointment.id}
         {...appointment}
+        interview={interview}
       />
     );
   });
 
   // Run functions to prepare component for render
-  appointments.push(<Appointment key="last" time="5pm" />);
+  schedule.push(<Appointment key="last" time="5pm" />);
   
   return (
     <main className="layout">
@@ -69,7 +75,7 @@ export default function Application() {
       />
       </section>
       <section className="schedule">
-        {appointments}
+        {schedule}
       </section>
     </main>
   );

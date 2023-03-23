@@ -8,3 +8,20 @@ export function getAppointmentsForDay(state, name) {
   }
   return [];
 }
+
+export function getInterview(state, interview) {
+  if (interview) {
+    const interviewDetails = {  
+      "student": interview.student,
+      "interviewer": {  
+        "id": interview.interviewer,
+        "name": state.interviewers[interview.interviewer].name,
+        "avatar": state.interviewers[interview.interviewer].avatar
+      }
+    }
+
+    return interviewDetails;
+  }
+
+  return null;
+}
