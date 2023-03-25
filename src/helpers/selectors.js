@@ -1,7 +1,18 @@
-export function getAppointmentsForDay(state, name) {
+export function getAppointmentsForDay(state, selectedDay) {
   for (const day of state.days) {
-    if (day.name === name) {
+    if (day.name === selectedDay) {
       const filteredData = Object.values(state.appointments).filter((appointment) => {return day.appointments.includes(appointment.id)})
+
+      return filteredData;
+    }
+  }
+  return [];
+}
+
+export function getInterviewersForDay(state, selectedDay) {
+  for (const day of state.days) {
+    if (day.name === selectedDay) {
+      const filteredData = Object.values(state.interviewers).filter((interviewer) => {return day.interviewers.includes(interviewer.id)})
 
       return filteredData;
     }
