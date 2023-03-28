@@ -1,10 +1,12 @@
 import React from 'react';
 import { useVisualMode } from '../../hooks/useVisualMode';
+import axios from 'axios';
 
 import Header from './Header';
 import Show from './Show';
 import Empty from './Empty';
-import FORM from './Form';
+import Form from './Form';
+import Status from './Status';
 
 import './styles.scss';
 
@@ -12,8 +14,24 @@ export default function Appointment(props) {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
-  console.log(props);
+  const SAVING = "SAVING";
+
+  // Declare Hooks
+
   const { mode, transition, back } = useVisualMode(props.interview ? SHOW : EMPTY);
+
+  // Declare Functions
+  const save = (name, interviewer) => {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    
+    axios.put(`/api/appointments/${props.id}`, {interview})
+      .then(transition(SAVING))
+      .then(props.bookInterview(props.id, interview))
+      .then(transition(SHOW))
+  }
 
   return (
     <article className="appointment">
@@ -26,11 +44,17 @@ export default function Appointment(props) {
         />
       )}
       {mode === CREATE && 
-        <FORM
-          interviewers={[]}
+        <Form
+          interviewers={props.interviewers}
           onCancel={() => {back()}}
+          onSave={save}
         />
       }
+      {mode === SAVING && 
+        <Status
+          message={SAVING}
+        />}
+
     </article>
   );
 } 

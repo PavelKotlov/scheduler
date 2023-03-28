@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import DayList from "./DayList";
 import Appointment from "./Appointment";
-import { getAppointmentsForDay, getInterview } from "../helpers/selectors"; 
+import { getAppointmentsForDay, getInterview, getInterviewersForDay} from "../helpers/selectors"; 
 import axios from 'axios';
 
 import "components/Application.scss";
@@ -33,10 +33,25 @@ export default function Application() {
   
   // Declare Functions
   const setDay = day => setState({ ...state, day });
+  
+  const bookInterview = (id, interview) => {
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    setState(prev => ({...prev, appointments}));
+  };
 
   // Declare Variables
   const dailyAppointments =  getAppointmentsForDay(state, state.day);
-  
+  const dailyInterviewers = getInterviewersForDay(state, state.day);
+
   const schedule = dailyAppointments.map(appointment => {
     const interview = getInterview(state, appointment.interview);
 
@@ -45,6 +60,8 @@ export default function Application() {
         key={appointment.id}
         {...appointment}
         interview={interview}
+        interviewers={dailyInterviewers}
+        bookInterview={bookInterview}
       />
     );
   });
