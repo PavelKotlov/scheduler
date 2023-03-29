@@ -18,6 +18,8 @@ export default function Appointment(props) {
   const SAVING = "SAVING";
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
+  const EDIT = "EDIT";
+
 
   // Declare Hooks
 
@@ -49,7 +51,7 @@ export default function Appointment(props) {
       });
   };
 
-  console.log("Appointment props", props);
+  
   return (
     <article className="appointment">
       <Header time={props.time}/>
@@ -58,6 +60,7 @@ export default function Appointment(props) {
         <Show
           student={props.interview.student}
           interviewer={props.interview.interviewer}
+          onEdit={() => {transition(EDIT)}}
           onDelete={() => {transition(CONFIRM)}}
         />
       }
@@ -80,9 +83,18 @@ export default function Appointment(props) {
       }
       {mode === CONFIRM && 
         <Confirm 
-        message={"Are you sure you would like to delete?"}
-        onCancel={() => {back()}}
-        onConfirm={() => {deleteAppointment(props.id)}}
+          message={"Are you sure you would like to delete?"}
+          onCancel={() => {back()}}
+          onConfirm={() => {deleteAppointment(props.id)}}
+        />
+      }
+      {mode === EDIT &&
+        <Form 
+          interviewers={props.interviewers}
+          student={props.interview.student}
+          interviewer={props.interview.interviewer.id}
+          onCancel={() => {back()}}
+          onSave={save}
         />
       }
     </article>
