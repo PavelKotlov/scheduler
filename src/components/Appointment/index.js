@@ -8,6 +8,7 @@ import Empty from './Empty';
 import Form from './Form';
 import Status from './Status';
 import Confirm from './Confirm';
+import Error from './Error';
 
 import './styles.scss';
 
@@ -19,7 +20,8 @@ export default function Appointment(props) {
   const DELETING = "DELETING";
   const CONFIRM = "CONFIRM";
   const EDIT = "EDIT";
-
+  const ERROR_SAVE = "ERROR_SAVE";
+  const ERROR_DELETE = "ERROR_DELETE";
 
   // Declare Hooks
 
@@ -38,20 +40,26 @@ export default function Appointment(props) {
       .then(() => {
         props.bookInterview(props.id, interview);
         transition(SHOW);
+      })
+      .catch((err) => {
+        transition(ERROR_SAVE, true)
       });
   }
 
   const deleteAppointment = (id) => {
-    transition(DELETING)
+    transition(DELETING, true)
 
     axios.delete(`/api/appointments/${props.id}`)
       .then(() => {
         props.cancelInterview(id)
         transition(EMPTY);
+      })
+      .catch((err) => {
+        transition(ERROR_DELETE, true)
       });
   };
 
-  
+
   return (
     <article className="appointment">
       <Header time={props.time}/>
@@ -95,6 +103,18 @@ export default function Appointment(props) {
           interviewer={props.interview.interviewer.id}
           onCancel={() => {back()}}
           onSave={save}
+        />
+      }
+      {mode === ERROR_SAVE &&
+        <Error 
+          message={"Could not save the appointment"}
+          onClose={() => {back()}}
+        />
+      }
+      {mode === ERROR_DELETE &&
+        <Error 
+          message={"Could not delete the appointment"}
+          onClose={() => {back()}}
         />
       }
     </article>
