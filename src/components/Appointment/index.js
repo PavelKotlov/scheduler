@@ -1,6 +1,5 @@
 import React from 'react';
 import { useVisualMode } from '../../hooks/useVisualMode';
-import axios from 'axios';
 
 import Header from './Header';
 import Show from './Show';
@@ -24,7 +23,6 @@ export default function Appointment(props) {
   const ERROR_DELETE = "ERROR_DELETE";
 
   // Declare Hooks
-
   const { mode, transition, back } = useVisualMode(props.interview ? SHOW : EMPTY);
 
   // Declare Functions
@@ -36,11 +34,8 @@ export default function Appointment(props) {
 
     transition(SAVING)
 
-    axios.put(`/api/appointments/${props.id}`, {interview})
-      .then(() => {
-        props.bookInterview(props.id, interview);
-        transition(SHOW);
-      })
+    Promise.resolve(props.bookInterview(props.id, interview))
+      .then(() => {transition(SHOW)})
       .catch((err) => {
         transition(ERROR_SAVE, true)
       });
@@ -48,17 +43,13 @@ export default function Appointment(props) {
 
   const deleteAppointment = (id) => {
     transition(DELETING, true)
-
-    axios.delete(`/api/appointments/${props.id}`)
-      .then(() => {
-        props.cancelInterview(id)
-        transition(EMPTY);
-      })
+    
+    Promise.resolve(props.cancelInterview(id))
+      .then(() => {transition(EMPTY)})
       .catch((err) => {
         transition(ERROR_DELETE, true)
       });
   };
-
 
   return (
     <article className="appointment">
