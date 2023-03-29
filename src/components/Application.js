@@ -48,6 +48,20 @@ export default function Application() {
     setState(prev => ({...prev, appointments}));
   };
 
+  const cancelInterview = (id) => {
+    const appointment = {
+      ...state.appointments[id],
+      interview: null 
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    setState(prev => ({...prev, appointments}));
+  };
+
   // Declare Variables
   const dailyAppointments =  getAppointmentsForDay(state, state.day);
   const dailyInterviewers = getInterviewersForDay(state, state.day);
@@ -62,6 +76,7 @@ export default function Application() {
         interview={interview}
         interviewers={dailyInterviewers}
         bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });
