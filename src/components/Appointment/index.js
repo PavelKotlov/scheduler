@@ -1,5 +1,5 @@
 import React from 'react';
-import { useVisualMode } from '../../hooks/useVisualMode';
+import useVisualMode from '../../hooks/useVisualMode';
 
 import Header from './Header';
 import Show from './Show';
