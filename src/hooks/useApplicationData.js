@@ -70,7 +70,7 @@ export function useApplicationData() {
 
     // set increase or reduce spots available
     let num = 0;
-    num = operation ? num += 1 : num -= 1;
+    num = operation === "increase" ? num += 1 : num -= 1;
 
     // rebuild days object with updated day object 
     const selectedDay = state.days.findIndex(day => day.name === state.day)
