@@ -29,7 +29,7 @@ export function useApplicationData() {
   // Declare Functions
   const setDay = day => setState({ ...state, day });
   
-  const bookInterview = (id, interview) => {
+  const bookInterview = (id, interview, editMode) => {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -42,7 +42,7 @@ export function useApplicationData() {
 
     return axios
       .put(`/api/appointments/${id}`, {interview})
-      .then(() => {setState(prev => ({...prev, appointments, days: updateSpots("reduce")}))})
+      .then(() => {setState(prev => ({...prev, appointments, days: updateSpots("reduce", editMode)}))})
   };
 
   const cancelInterview = (id) => {
@@ -74,7 +74,7 @@ export function useApplicationData() {
 
     // rebuild days object with updated day object 
     const selectedDay = state.days.findIndex(day => day.name === state.day)
-    
+
     const day = {
       ...state.days[selectedDay],
       spots: availableSpots.length + num
