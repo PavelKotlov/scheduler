@@ -11,7 +11,7 @@ import Error from './Error';
 
 import './styles.scss';
 
-export default function Appointment(props) {
+const Appointment = props => {
   const EMPTY = "EMPTY";
   const SHOW = "SHOW";
   const CREATE = "CREATE";
@@ -113,3 +113,5 @@ export default function Appointment(props) {
     </article>
   );
 } 
+
+export default Appointment;

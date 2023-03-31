@@ -6,7 +6,7 @@ import { getAppointmentsForDay, getInterview, getInterviewersForDay} from "../he
 
 import "components/Application.scss";
 
-export default function Application() {
+const Application = () => {
   const {
     state,
     setDay,
@@ -59,3 +59,5 @@ export default function Application() {
     </main>
   );
 }
+
+export default Application;

@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import "components/DayListItem.scss";
 
-export default function DayListItem(props) {
+const DayListItem = props => {
   const formatSpots = spots => {
     if (spots === 1) {
       return "1 spot remaining";
@@ -22,3 +22,5 @@ export default function DayListItem(props) {
     </li>
   );
 }
+
+export default DayListItem;

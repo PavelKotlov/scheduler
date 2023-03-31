@@ -2,7 +2,7 @@ import React from 'react'
 import classNames from "classnames";
 import "components/InterviewerListItem.scss";
 
-export default function InterviewerListItem(props) {
+const InterviewerListItem = props => {
   const interviewerClass = classNames('interviewers__item', {'interviewers__item--selected' : props.selected});
 
   return (
@@ -16,3 +16,5 @@ export default function InterviewerListItem(props) {
     </li>
   );
 }
+
+export default InterviewerListItem;

@@ -93,7 +93,6 @@ export default {
         statusText: "No Content"
       });
     }
-
   }),
   delete: jest.fn(url => {
     if (url === "/api/appointments/2") {
