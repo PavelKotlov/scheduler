@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { getAppointmentsForDay } from '../helpers/selectors';
 
-export function useApplicationData() {
+const useApplicationData = () => {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
@@ -29,7 +28,7 @@ export function useApplicationData() {
   // Declare Functions
   const setDay = day => setState({ ...state, day });
   
-  const bookInterview = (id, interview, editMode) => {
+  const bookInterview = (id, interview, adjSpots) => {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
@@ -40,9 +39,15 @@ export function useApplicationData() {
       [id]: appointment
     };
 
+    let operation = "decrease"
+    
+    if (adjSpots) {
+      operation = "";
+    }
+
     return axios
       .put(`/api/appointments/${id}`, {interview})
-      .then(() => {setState(prev => ({...prev, appointments, days: updateSpots("reduce", editMode)}))})
+      .then(() => {setState(prev => ({...prev, appointments, days: updateSpots(operation)}))})
   };
 
   const cancelInterview = (id) => {
@@ -58,34 +63,35 @@ export function useApplicationData() {
 
     return axios
       .delete(`/api/appointments/${id}`)
-      .then(() => {setState(prev => ({...prev, appointments, days: updateSpots("increase")}))})
+      .then(() => {
+        setState(prev => ({
+          ...prev, 
+          appointments, 
+          days: updateSpots("increase")
+        }))
+      })
   };
 
   const updateSpots = (operation) => {
-    // return array of empty appointments
-    const appointments = getAppointmentsForDay(state, state.day);
-    const availableSpots = appointments.filter(appointment => {
-      return appointment.interview === null;
-    })
-
-    // set increase or reduce spots available
+    const dayIndex = state.days.findIndex(day => {return day.name === state.day})
+    
     let num = 0;
-    num = operation === "increase" ? num += 1 : num -= 1;
-
-    // rebuild days object with updated day object 
-    const selectedDay = state.days.findIndex(day => day.name === state.day)
+    if (operation === "increase") {
+      num += 1;
+    } else if (operation === "decrease") {
+      num -= 1;
+    }
 
     const day = {
-      ...state.days[selectedDay],
-      spots: availableSpots.length + num
+      ...state.days[dayIndex],
+      spots: state.days[dayIndex].spots + num
     }
-    
+
     const days = {
       ...state.days,
-      [selectedDay]: day
+      [dayIndex]: day
     }
     
-    // return days as an array
     return Object.values(days);
   }
 
@@ -96,3 +102,5 @@ export function useApplicationData() {
     cancelInterview
   };
 }
+
+export default useApplicationData;

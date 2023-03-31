@@ -34,7 +34,9 @@ export default function Appointment(props) {
 
     transition(SAVING)
 
-    Promise.resolve(props.bookInterview(props.id, interview))
+    const adjSpots = mode === EDIT ? true : false;
+
+    Promise.resolve(props.bookInterview(props.id, interview, adjSpots))
       .then(() => {transition(SHOW)})
       .catch((err) => {
         transition(ERROR_SAVE, true)
