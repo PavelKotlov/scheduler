@@ -6,17 +6,14 @@ The interview Scheduler app assists students by tracking upcoming interviews. Ut
 🔗 [Scheduler API Repo](https://github.com/PavelKotlov/scheduler-api)
 
 [![made-with-Node](https://img.shields.io/badge/Made%20with-Node.js%20-success)](https://nodejs.org/en/)
-[![made-with-React](https://img.shields.io/badge/Made%20with-React%20-blue)]()
-[![made-with-Sass](https://img.shields.io/badge/Made%20with-Sass%20-pink)]()
-[![made-with-Storybook](https://img.shields.io/badge/Made%20with-Storybook%20-pink)]()
-[![made-with-Jest](https://img.shields.io/badge/Made%20with-Jest%20-purple)]()
-[![made-with-Axios](https://img.shields.io/badge/Made%20with-Axios%20-blue)]()
-[![made-with-Classnames](https://img.shields.io/badge/Made%20with-Classnames%20-success)]()
-[![made-with-Normalize.css](https://img.shields.io/badge/Made%20with-Normalize.css%20-success)]()
+[![made-with-React](https://img.shields.io/badge/Made%20with-React%20-blue)](https://react.dev/)
+[![made-with-Sass](https://img.shields.io/badge/Made%20with-Sass%20-pink)](https://sass-lang.com/)
+[![made-with-Storybook](https://img.shields.io/badge/Made%20with-Storybook%20-pink)](https://storybook.js.org/)
+[![made-with-Jest](https://img.shields.io/badge/Made%20with-Jest%20-purple)](https://jestjs.io/)
+[![made-with-Axios](https://img.shields.io/badge/Made%20with-Axios%20-blue)](https://axios-http.com/docs/intro)
+[![made-with-Classnames](https://img.shields.io/badge/Made%20with-Classnames%20-success)](https://www.npmjs.com/package/classnames)
+[![made-with-Normalize.css](https://img.shields.io/badge/Made%20with-Normalize.css%20-orange)](https://www.npmjs.com/package/normalize.css)
 
-
-
-<!--https://axios-http.com/docs/intro -->
 
 ## Table of Content
 - [🔗 Interview Scheduler](#-interview-scheduler)
@@ -25,7 +22,6 @@ The interview Scheduler app assists students by tracking upcoming interviews. Ut
 - [🚀 Getting Started](#-getting-started)
   - [Setup](#setup-app)
   - [Run App](#run-app)
-- [⚫ Endpoints](#-endpoints)
 - [🧱 Main Structure](#-main-structure)
 - [📦 Tech Stack (Dependencies)](#-tech-stack-dependencies)
   - [🔨 Dependencies](#-Dependencies)
@@ -33,7 +29,9 @@ The interview Scheduler app assists students by tracking upcoming interviews. Ut
 - [⚠️ Disclaimer](#️-disclaimer)
 
 ## 🌟 Features
-<!-- add features -->
+- A student can select a day and view the number of interview spots available for that day.
+- A student can add, edit, and delete interviews.
+- A student can select or change an interviewer.
  
 ## 🚀 Getting Started
 
@@ -55,46 +53,33 @@ The interview Scheduler app assists students by tracking upcoming interviews. Ut
 7. Download the configuration file [here](https://drive.google.com/file/d/1xfaeGpQcF9sPAIUTMtFdAhUUryNDQ1tl/view) and copy it to your desktop. You will be using this file to run VcXSrv.
 
 ### Run App
+`cd scheduler-api` 
+- Running Scheduler Development Database `npm start`
+- Running Scheduler Test Database `NODE_ENV=test npm start`
+
 `cd scheduler`
 - Running Webpack Development Server `npm start`
 - Running Jest Test Framework `npm test`
 - Running Storybook Visual Testbed `npm run storybook`
 - Running Cypress Test Framework `npm run cypress`
 
-`cd scheduler-api` 
-- Running Scheduler Development Database `npm start`
-- Running Scheduler Test Database `NODE_ENV=test npm start`
-
-## ⚫ Endpoints
-- Base URL : http://127.0.0.1:8001
-<!-- - Api URL : http://127.0.0.1:3000 -->
-
-| <b> Http method </b> | path                             | Description                                                                             |
-| :------------------: | :------------------------------: | :-------------------------------------------------------------------------------------: |
-| `GET`                | `/`                              | Gets index page and retrieves all the posts of a user                                   |
-| `POST`               | `/`                              | Creates a new post and adds it to all displayed posts                                   |
-
 ## 🧱 Main Structure
 ```sh
 ├─── .storybook                
-├─── cypress
-│  ├─── fixtures
+├─── cypress                  # cypress end to end testing
+│  ├─── fixtures             
 │  ├─── integration
 │  ├─── plugins
 │  ├─── support
-├─── public
+├─── public                   # contains static files such as images
 │  ├─── images
-│  ├─── index.html
 ├─── src
-│  ├─── _mocks_
-│  ├─── components
-│  ├─── helpers
-│  ├─── hooks
-│  ├─── styles
-│  ├─── index.js
-│  ├─── index.css
-│  ├─── setupTests.js
-├─── stories
+│  ├─── _mocks_               # mock data
+│  ├─── components            # react components
+│  ├─── helpers               # all helper functions to manage interviews
+│  ├─── hooks                 # custom react hooks
+│  ├─── styles                # sass style sheets
+├─── stories                  # contains all the tests for storybook
 ├─── .env.development
 ├─── .eslintrc.json
 ├─── .gitignore
