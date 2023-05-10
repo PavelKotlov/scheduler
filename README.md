@@ -6,22 +6,25 @@ The interview Scheduler app assists students by tracking upcoming interviews. Ut
 🔗 [Scheduler API Repo](https://github.com/PavelKotlov/scheduler-api)
 
 [![made-with-Node](https://img.shields.io/badge/Made%20with-Node.js%20-success)](https://nodejs.org/en/)
-[![made-with-express](https://img.shields.io/badge/Made%20with-Express.js%20-black)](https://expressjs.com/)
-[![made-with-jquery](https://img.shields.io/badge/Made%20with-jQuery%20-blue)](https://jquery.com/)
-[![made-with-ajax](https://img.shields.io/badge/Made%20with-AJAX%20-blue)]()
-[![made-with-body-parser](https://img.shields.io/badge/Made%20with-Body_Parser%20-red)](https://www.npmjs.com/package/body-parser)
-[![made-with-chance](https://img.shields.io/badge/Made%20with-Chance%20-red)](https://www.npmjs.com/package/chance)
-[![made-with-md5](https://img.shields.io/badge/Made%20with-MD5%20-black)](https://www.npmjs.com/package/md5)
-[![made-with-nodemon](https://img.shields.io/badge/Made%20with-Nodemon.js%20-success)](https://nodemon.io/)
-[![made-with-html](https://img.shields.io/badge/Made%20with-HTML%20-orange)](https://developer.mozilla.org/en-US/docs/Web/html)
-[![made-with-css](https://img.shields.io/badge/Made%20with-CSS%20-blue)](https://developer.mozilla.org/en-US/docs/Web/CSS)
-[![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript%20-yellow)](https://developer.mozilla.org/en-US/docs/Web/javascript)
+[![made-with-React](https://img.shields.io/badge/Made%20with-React%20-blue)]()
+[![made-with-Sass](https://img.shields.io/badge/Made%20with-Sass%20-pink)]()
+[![made-with-Storybook](https://img.shields.io/badge/Made%20with-Storybook%20-pink)]()
+[![made-with-Jest](https://img.shields.io/badge/Made%20with-Jest%20-purple)]()
+[![made-with-Axios](https://img.shields.io/badge/Made%20with-Axios%20-blue)]()
+[![made-with-Classnames](https://img.shields.io/badge/Made%20with-Classnames%20-success)]()
+[![made-with-Normalize.css](https://img.shields.io/badge/Made%20with-Normalize.css%20-success)]()
+
+
+
+<!--https://axios-http.com/docs/intro -->
 
 ## Table of Content
 - [🔗 Interview Scheduler](#-interview-scheduler)
 - [Table of Content](#table-of-content)
 - [🌟 Features](#-features)
 - [🚀 Getting Started](#-getting-started)
+  - [Setup](#-setup-app)
+  - [Run App](#-run-app)
 - [⚫ Endpoints](#-endpoints)
 - [🧱 Main Structure](#-main-structure)
 - [📦 Tech Stack (Dependencies)](#-tech-stack-dependencies)
@@ -30,9 +33,7 @@ The interview Scheduler app assists students by tracking upcoming interviews. Ut
 - [⚠️ Disclaimer](#️-disclaimer)
 
 ## 🌟 Features
-- Create tweets under 140 characters.
-- Hide and show new tweet input box.
-- Return to top button when scrolling page.
+<!-- add features -->
  
 ## 🚀 Getting Started
 
@@ -40,16 +41,16 @@ The interview Scheduler app assists students by tracking upcoming interviews. Ut
 1. Fork repository.
 2. Clone Repository to local machine.
 3. Install all dependencies using the `npm install` command.
-4. Fork and clone the scheduler-api repository from [here](https://github.com/lighthouse-labs/scheduler-api)
-5. In terminal run the `startpostgres` command to start the postgres server
-6. Follow the README.md instructions from scheduler-api to setup and seed the scheduler_development database
+4. Fork and clone the scheduler-api repository from [here](https://github.com/lighthouse-labs/scheduler-api).
+5. In terminal run the `startpostgres` command to start the PostgreSQL server.
+6. Follow the README.md instructions from scheduler-api to setup and seed the scheduler_development database.
 
 ***To run cypress you will also need to create the scheduler_test database *and install X-server(for WSL users only):
-1. In a new terminal window `cd scheduler-api` then run `psql -U development -d scheduler_test`
-2. Login using the same info from scheduler-api README.md
-3. Next duplicate the .env.development file and rename it .env.test. In the new file, change only the PGDATABASE value to scheduler_test
-4. Now run the test server using this command `NODE_ENV=test npm start` once ready open the browser and go to localhost:8001
-5. Then seed the database by inserting the following url in the browser `http://localhost:8001/api/debug/reset`
+1. In a new terminal window `cd scheduler-api` then run `psql -U development -d scheduler_test`.
+2. Login using the same info from scheduler-api README.md.
+3. Next duplicate the .env.development file and rename it .env.test. In the new file, change only the PGDATABASE value to scheduler_test.
+4. Now run the test server using this command `NODE_ENV=test npm start` once ready open the browser and go to [localhost:8001](http://localhost:8001).
+5. Then seed the database by inserting the following url in the browser `http://localhost:8001/api/debug/reset` or clicking [here](http://localhost:8001/api/debug/reset).
 6. Download and install X-server [VcXSrv](https://sourceforge.net/projects/vcxsrv/)
 7. Download the configuration file [here](https://drive.google.com/file/d/1xfaeGpQcF9sPAIUTMtFdAhUUryNDQ1tl/view) and copy it to your desktop. You will be using this file to run VcXSrv.
 
@@ -65,7 +66,8 @@ The interview Scheduler app assists students by tracking upcoming interviews. Ut
 - Running Scheduler Test Database `NODE_ENV=test npm start`
 
 ## ⚫ Endpoints
-- Base URL : http://127.0.0.1:8080
+- Base URL : http://127.0.0.1:8001
+<!-- - Api URL : http://127.0.0.1:3000 -->
 
 | <b> Http method </b> | path                             | Description                                                                             |
 | :------------------: | :------------------------------: | :-------------------------------------------------------------------------------------: |
@@ -74,21 +76,31 @@ The interview Scheduler app assists students by tracking upcoming interviews. Ut
 
 ## 🧱 Main Structure
 ```sh
-├─── .github                # note to students
-├─── public                 
-│  ├─── images              # contains proflie pic
-│  ├─── scripts             # contains client side scripts
-│  ├─── styles              # contains all the css files
-│  ├─── vendor              # contains css normalization and jquery scripts
-│  ├─── index.html          # main page
-├─── server             
-│  ├─── data-files          # mock tweets
-│  ├─── lib                 
-│  |  ├─── util             # contains all the helper functions
-│  ├─── routes              # app routes
-│  ├─── index.js            # the main driver of the app includes all the routes and server configs
+├─── .storybook                
+├─── cypress
+│  ├─── fixtures
+│  ├─── integration
+│  ├─── plugins
+│  ├─── support
+├─── public
+│  ├─── images
+│  ├─── index.html
+├─── src
+│  ├─── _mocks_
+│  ├─── components
+│  ├─── helpers
+│  ├─── hooks
+│  ├─── styles
+│  ├─── index.js
+│  ├─── index.css
+│  ├─── setupTests.js
+├─── stories
+├─── .env.development
+├─── .eslintrc.json
 ├─── .gitignore
 ├─── README.md
+├─── cypress.json
+├─── jsconfig.json
 ├─── package-lock.json
 └─── package.json
 ```
@@ -96,13 +108,27 @@ The interview Scheduler app assists students by tracking upcoming interviews. Ut
 ## 📦 Tech Stack (Dependencies)
 
 ### 🔨 Dependencies
-- [Express.js](https://www.npmjs.com/package/express)
-- [Body-Parser](https://www.npmjs.com/package/body-parser)
-- [Chance](https://www.npmjs.com/package/chance)
-- [MD5](https://www.npmjs.com/package/md5)
+- [Axios](https://www.npmjs.com/package/axios/v/0.20.0)
+- [Classnames](https://www.npmjs.com/package/classnames/v/2.2.6)
+- [Normalize.css](https://www.npmjs.com/package/normalize.css/v/8.0.1)
+- [React](https://react.dev/learn/start-a-new-react-project) **(V^16.9.0)
+- [React-Dom](https://www.npmjs.com/package/react-dom/v/16.9.0)
+- [React-Scripts](https://www.npmjs.com/package/react-scripts/v/3.4.4)
 
 ### 🧰 Development Dependencies
-- [Nodemon](https://www.npmjs.com/package/nodemon)
+- [@babel/core](https://www.npmjs.com/package/@babel/core/v/7.4.3)
+- [@storybook/addon-actions](https://www.npmjs.com/package/@storybook/addon-actions/v/5.0.10)
+- [@storybook/addon-backgrounds](https://www.npmjs.com/package/@storybook/addon-backgrounds/v/5.0.10)
+- [@storybook/addon-links](https://www.npmjs.com/package/@storybook/addon-links/v/5.0.10)
+- [@storybook/addons](https://www.npmjs.com/package/@storybook/addons/v/5.0.10)
+- [@storybook/react](https://www.npmjs.com/package/@storybook/react/v/5.0.10)
+- [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom/v/4.0.0)
+- [@testing-library/react](https://www.npmjs.com/package/@testing-library/react/v/8.0.7)
+- [@testing-library/react-hooks](https://www.npmjs.com/package/@testing-library/react-hooks/v/8.0.1)
+- [Babel-Loader](https://www.npmjs.com/package/babel-loader/v/8.1.0)
+- [Prop-Types](https://www.npmjs.com/package/prop-types/v/15.8.1)
+- [React-Test-Renderer](https://www.npmjs.com/package/react-test-renderer/v/16.9.0)
+- [Sass](https://www.npmjs.com/package/sass/v/1.53.0)
 
 ## ⚠️ Disclaimer
 - This is a project for [LHL web development bootcamp](https://www.lighthouselabs.ca/) and is not meant for production use.
@@ -117,27 +143,3 @@ The interview Scheduler app assists students by tracking upcoming interviews. Ut
 ![Saving Animation](https://user-images.githubusercontent.com/107829745/229013519-ba5bd64c-8b5d-4c07-b990-0027f6b2d8d9.JPG)
 ![Add New Interview - No Interviewer Error](https://user-images.githubusercontent.com/107829745/229013523-6d63bed3-8c26-4a6c-a0b9-5018a4e0648b.JPG)
 ![Add New Interview - No Name Error](https://user-images.githubusercontent.com/107829745/229013525-d62bccf6-d470-40f6-b2d5-d229790893d5.JPG)
-
-
-<!--## Dependencies
-- axios V^0.20.0
-- classnames V^2.2.6
-- normalize.css V^8.0.1
-- react V^16.9.0
-- react-dom V^16.9.0
-- react-scripts V3.4.4
-
-## Dev - Dependencies
-- @babel/core V^7.4.3
-- @storybook/addon-actions V^5.0.10
-- @storybook/addon-backgrounds V^5.0.10
-- @storybook/addon-links V^5.0.10
-- @storybook/addons V^5.0.10
-- @storybook/react V^5.0.10
-- @testing-library/jest-dom V^4.0.0
-- @testing-library/react V^8.0.7
-- @testing-library/react-hooks V^8.0.1
-- babel-loader V8.1.0
-- prop-types V^15.8.1
-- react-test-renderer V^16.9.0
-- sass V^1.53.0-->
