@@ -1,6 +1,6 @@
 <h1 align="center">Interview Scheduler</h1>
 
-#### Interview Scheduler
+#### 🔗 Interview Scheduler
 The interview Scheduler app assists students by tracking upcoming interviews. Utilizing React for the front end and a Postgres database for the back end, this SPA (single page application) enables users to book, edit, and cancel scheduled interviews in real-time. The client and server apps communicate over HTTP using Axios requests. Also, best practices of Test Driven Development were followed during the building of all the app's components. Testing frameworks used during this project were Jest, Storybooks, and Cypress to enable unit, integration, and End-2-End (E2E) testing.
 
 🔗 [Scheduler API Repo](https://github.com/PavelKotlov/scheduler-api)
@@ -18,7 +18,7 @@ The interview Scheduler app assists students by tracking upcoming interviews. Ut
 [![made-with-javascript](https://img.shields.io/badge/Made%20with-JavaScript%20-yellow)](https://developer.mozilla.org/en-US/docs/Web/javascript)
 
 ## Table of Content
-- [Interview Scheduler](#-interview-scheduler)
+- [🔗 Interview Scheduler](#-interview-scheduler)
 - [Table of Content](#table-of-content)
 - [🌟 Features](#-features)
 - [🚀 Getting Started](#-getting-started)
