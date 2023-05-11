@@ -32,7 +32,11 @@ The interview Scheduler app assists students by tracking upcoming interviews. Ut
 - A student can select a day and view the number of interview spots available for that day.
 - A student can add, edit, and delete interviews.
 - A student can select or change an interviewer.
- 
+
+<div align="center">
+  <img alt="schedule interview" src="https://github.com/PavelKotlov/scheduler/assets/107829745/bd77fe48-d020-454e-b1a2-ab1ae0427f2b" width="512:288"/>
+</div>
+
 ## 🚀 Getting Started
 
 ### Setup App
@@ -117,14 +121,3 @@ The interview Scheduler app assists students by tracking upcoming interviews. Ut
 
 ## ⚠️ Disclaimer
 - This is a project for [LHL web development bootcamp](https://www.lighthouselabs.ca/) and is not meant for production use.
-
-
-## Screenshoots
-
-![Add New Interview Form](https://user-images.githubusercontent.com/107829745/229013526-10121cf7-ce8d-4f08-8255-70b9a83b4e83.JPG)
-![Hover Over Interview](https://user-images.githubusercontent.com/107829745/229013518-6a9df0a4-70d2-4acf-8648-d3ff267908b4.JPG)
-![Confirmation Before Deletion](https://user-images.githubusercontent.com/107829745/229013516-e6a7a0cd-e7ae-4798-98cf-9fb7988df60f.JPG)
-![Deleting Animation](https://user-images.githubusercontent.com/107829745/229013517-775f4b61-e6c1-4e48-929d-b16497ca9c13.JPG)
-![Saving Animation](https://user-images.githubusercontent.com/107829745/229013519-ba5bd64c-8b5d-4c07-b990-0027f6b2d8d9.JPG)
-![Add New Interview - No Interviewer Error](https://user-images.githubusercontent.com/107829745/229013523-6d63bed3-8c26-4a6c-a0b9-5018a4e0648b.JPG)
-![Add New Interview - No Name Error](https://user-images.githubusercontent.com/107829745/229013525-d62bccf6-d470-40f6-b2d5-d229790893d5.JPG)
